@@ -20,7 +20,7 @@ FROM openjdk:11-jre-slim-buster
 LABEL maintainer="Tobia De Koninck <tdekoninck@openanalytics.eu>"
 ENV SHINY_USER shinyproxy-operator
 
-RUN useradd -c 'shinyproxy-operator user' -m -d /home/shinyproxy-operator -s /bin/nologin $SHINY_USER
+RUN useradd -c 'shinyproxy-operator user' -m -d /home/$SHINY_USER -s /bin/nologin $SHINY_USER
 COPY --from=builder --chown=$SHINY_USER:$SHINY_USER /opt/shinyproxy-operator/ /opt/shinyproxy-operator/
 
 WORKDIR /opt/shinyproxy-operator
