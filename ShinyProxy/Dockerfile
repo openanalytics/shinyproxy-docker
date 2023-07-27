@@ -1,7 +1,7 @@
 # We use a builder image which fully prepares the /opt/shinyproxy directory.
 # This directory can then be copied in *one step* to the final image.
 # In addition we also need unzip during build but not during runtime.
-FROM debian:buster as builder
+FROM public.ecr.aws/docker/library/debian:buster as builder
 
 # can be snapshots or releases
 ARG NEXUS_REPOSITORY=releases
@@ -17,12 +17,12 @@ RUN apt-get update -y && \
 COPY application.yml /opt/shinyproxy/application.yml
 
 # FINAL IMAGE
-FROM openjdk:11-jre-slim-buster
+FROM public.ecr.aws/docker/library/eclipse-temurin:11-jammy
 
 LABEL maintainer="Tobia De Koninck <tdekoninck@openanalytics.eu>"
 ENV SHINY_USER shinyproxy
 
-RUN useradd -c 'shinyproxy user' -m -d /home/$SHINY_USER -s /bin/nologin $SHINY_USER
+RUN useradd -c 'shinyproxy user' -m -d /home/$SHINY_USER -s /sbin/nologin $SHINY_USER
 COPY --from=builder --chown=$SHINY_USER:$SHINY_USER /opt/shinyproxy/ /opt/shinyproxy/
 
 WORKDIR /opt/shinyproxy

@@ -49,7 +49,7 @@ file of ShinyProxy.
 
 You can also build a Docker image of ShinyProxy using the official snapshot
 builds of ShinyProxy. In that case Docker downloads the required JAR file from
-our Neuxs server. The version information contained in the JAR file always ends
+our Nexus server. The version information contained in the JAR file always ends
 with `-SNAPSHOT`. Official builds of this image are available at 
 [Docker Hub](https://hub.docker.com/r/openanalytics/shinyproxy-snapshot).
 
@@ -63,7 +63,7 @@ docker build --build-arg NEXUS_REPOSITORY=snapshots -t shinyproxy-snapshot .
 
 Finally, you can build a Docker image of ShinyProxy using the official release
 versions of ShinyProxy. Similar to the snapshot version, Docker downloads the
-required JAR file from our Neuxs server. The version information contained in
+required JAR file from our Nexus server. The version information contained in
 the JAR file does not have a suffix, indicating a release build. Official builds
 of this image are available at 
 [Docker Hub](https://hub.docker.com/r/openanalytics/shinyproxy).
@@ -74,7 +74,7 @@ cd docker/ShinyProxy
 docker build --build-arg NEXUS_REPOSITORY=releases -t shinyproxy .
 ```
 
-The JAR file will be downloaded from our Neuxs server.
+The JAR file will be downloaded from our Nexus server.
 
 ## ShinyProxy Operator
 
@@ -114,7 +114,7 @@ file of the Operator.
 
 You can also build a Docker image of the operator using the official snapshot
 builds of the operator. In that case Docker downloads the required JAR file from
-our Neuxs server. The version information contained in the JAR file always ends
+our Nexus server. The version information contained in the JAR file always ends
 with `-SNAPSHOT`. Official builds of this image are available at 
 [Docker Hub](https://hub.docker.com/r/openanalytics/shinyproxy-operator-snapshot).
 
@@ -126,7 +126,7 @@ docker build --build-arg NEXUS_REPOSITORY=snapshots -t shinyproxy-operator-snaps
 
 ## Building latest release version
 
-We did not yet release a production release of the Operator. Thus there is also
+We did not yet release a production release of the Operator. Thus, there is also
 no Docker image of it yet.
 
 ## Using the Docker Image
