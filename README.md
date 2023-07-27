@@ -124,10 +124,22 @@ cd docker/Operator
 docker build --build-arg NEXUS_REPOSITORY=snapshots -t shinyproxy-operator-snapshot .
 ```
 
-## Building latest release version
+### Building latest release version
 
-We did not yet release a production release of the Operator. Thus, there is also
-no Docker image of it yet.
+Finally, you can build a Docker image of operator using the official release
+versions of ShinyProxy. Similar to the snapshot version, Docker downloads the
+required JAR file from our Nexus server. The version information contained in
+the JAR file does not have a suffix, indicating a release build. Official builds
+of this image are available at
+[Docker Hub](https://hub.docker.com/r/openanalytics/shinyproxy-operator).
+
+```bash
+git clone https://github.com/openanalytics/shinyproxy-docker/ docker
+cd docker/Operator
+docker build --build-arg NEXUS_REPOSITORY=releases -t shinyproxy-operator .
+```
+
+The JAR file will be downloaded from our Nexus server.
 
 ## Using the Docker Image
  
