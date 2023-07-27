@@ -5,8 +5,6 @@ ShinyProxy project. This allows you to inspect how our images are build and to
 build your own image. However, note that in most cases there is no need to build
 your own images. 
 
-**(c) Copyright Open Analytics NV, 2020-2021 - Apache License 2.0**
-
 ## ShinyProxy
 
 The Dockerfile for ShinyProxy can be found in the
@@ -145,3 +143,5 @@ The JAR file will be downloaded from our Nexus server.
  
 - [ShinyProxy](https://github.com/openanalytics/shinyproxy-config-examples/tree/master/02-containerized-docker-engine)
 - [ShinyProxy Operator](https://github.com/openanalytics/shinyproxy-operator/tree/develop/docs/deployment)
+
+**(c) Copyright Open Analytics NV, 2020-2023 - Apache License 2.0**
