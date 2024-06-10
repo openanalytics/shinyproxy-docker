@@ -17,7 +17,7 @@ RUN apt-get update -y && \
 COPY application.yml /opt/shinyproxy/application.yml
 
 # FINAL IMAGE
-FROM public.ecr.aws/docker/library/eclipse-temurin:11-jammy
+FROM public.ecr.aws/docker/library/eclipse-temurin:17-jammy
 
 LABEL maintainer="Tobia De Koninck <tdekoninck@openanalytics.eu>"
 ENV SHINY_USER shinyproxy
