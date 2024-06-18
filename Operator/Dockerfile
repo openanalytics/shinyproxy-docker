@@ -26,4 +26,4 @@ COPY --from=builder --chown=$SHINY_USER:$SHINY_USER /opt/shinyproxy-operator/ /o
 WORKDIR /opt/shinyproxy-operator
 USER $SHINY_USER
 
-CMD ["java", "-noverify", "-jar", "/opt/shinyproxy-operator/shinyproxy-operator.jar"]
+CMD ["java", "-jar", "/opt/shinyproxy-operator/shinyproxy-operator.jar"]
