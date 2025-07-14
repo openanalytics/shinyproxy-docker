@@ -1,14 +1,14 @@
 # We use a builder image which fully prepares the /opt/shinyproxy directory.
 # This directory can then be copied in *one step* to the final image.
 # In addition we also need unzip during build but not during runtime.
-FROM public.ecr.aws/docker/library/debian:buster as builder
+FROM public.ecr.aws/docker/library/ubuntu:noble as builder
 
 # can be snapshots or releases
 ARG NEXUS_REPOSITORY=releases
 ARG JAR_LOCATION=https://nexus.openanalytics.eu/service/rest/v1/search/assets/download?sort=version&repository=$NEXUS_REPOSITORY&maven.groupId=eu.openanalytics&maven.artifactId=shinyproxy&maven.extension=jar
 
 RUN mkdir /opt/shinyproxy
-ADD $JAR_LOCATION /opt/shinyproxy/shinyproxy.jar
+ADD --chmod=644 $JAR_LOCATION /opt/shinyproxy/shinyproxy.jar
 
 RUN apt-get update -y && \
     apt-get install unzip && \
@@ -17,7 +17,7 @@ RUN apt-get update -y && \
 COPY application.yml /opt/shinyproxy/application.yml
 
 # FINAL IMAGE
-FROM public.ecr.aws/docker/library/eclipse-temurin:17-jammy
+FROM public.ecr.aws/docker/library/eclipse-temurin:21-jre-noble
 
 LABEL maintainer="Tobia De Koninck <tdekoninck@openanalytics.eu>"
 ENV SHINY_USER shinyproxy
@@ -28,5 +28,4 @@ COPY --from=builder --chown=$SHINY_USER:$SHINY_USER /opt/shinyproxy/ /opt/shinyp
 WORKDIR /opt/shinyproxy
 USER $SHINY_USER
 
-# Start ShinyProxy with some extra parameters for faster startup (https://spring.io/blog/2018/11/08/spring-boot-in-a-container#tweaks)
-CMD ["java",  "-jar", "/opt/shinyproxy/shinyproxy.jar", "--spring.jmx.enabled=false", "--spring.config.location=/opt/shinyproxy/application.yml"]
+CMD ["java", "-Dsun.net.inetaddr.ttl=5", "-XX:MaxRAMPercentage=50.0", "-XX:MinRAMPercentage=20.0", "-XX:+ExitOnOutOfMemoryError", "-jar", "/opt/shinyproxy/shinyproxy.jar", "--spring.jmx.enabled=false", "--spring.config.location=/opt/shinyproxy/application.yml"]

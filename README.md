@@ -142,6 +142,6 @@ The JAR file will be downloaded from our Nexus server.
 ## Using the Docker Image
  
 - [ShinyProxy](https://github.com/openanalytics/shinyproxy-config-examples/tree/master/02-containerized-docker-engine)
-- [ShinyProxy Operator](https://github.com/openanalytics/shinyproxy-operator/tree/develop/docs/deployment)
+- [ShinyProxy Operator](https://shinyproxy.io/documentation/shinyproxy-operator/features/)
 
-**(c) Copyright Open Analytics NV, 2020-2023 - Apache License 2.0**
+**(c) Copyright Open Analytics NV, 2020-2025 - Apache License 2.0**
